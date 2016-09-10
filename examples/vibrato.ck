@@ -2,7 +2,7 @@
 SinOsc vibrato => SawOsc viol => ADSR env => dac; 
 
 // initial note frequency (musical A)
-385.0 => viol.freq;                  // (2) Sets initial pitch.
+300.0 => viol.freq;                  // (2) Sets initial pitch.
 
 // Setup ADSR
 env.set(0.2 :: second, 0.2 :: second, 0.5, 0.2 :: second);
@@ -14,7 +14,7 @@ env.set(0.2 :: second, 0.2 :: second, 0.5, 0.2 :: second);
 6.0 => vibrato.freq;
 
 // play up the overtone series
-while (viol.freq() < 800.0)         // (3) Loops over three octaves of pitches.
+while (viol.freq() < 800.0)         
 {
     // trigger envelope
     1 => env.keyOn;                 // (4) Envelope.keyOn starts note.
@@ -29,5 +29,5 @@ while (viol.freq() < 800.0)         // (3) Loops over three octaves of pitches.
     0.2 :: second => now;
 
     // next note up the overtone series
-    viol.freq() + 55.0 => viol.freq; // (6) Increases pitch, climbing up harmonic series.
+    viol.freq() + 55.0 => viol.freq; // (6) Increases pitch.
 }
